@@ -1,5 +1,6 @@
 import { pgTable, uuid, text, timestamp, integer, smallint, real, jsonb, bigserial } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
+import type { InferSelectModel } from 'drizzle-orm'
 
 export const domains = pgTable('domains', {
   id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
@@ -57,3 +58,10 @@ export const savedCards = pgTable('saved_cards', {
   cardId: uuid('card_id').primaryKey().references(() => cards.id),
   savedAt: timestamp('saved_at').notNull().defaultNow(),
 })
+
+// Inferred types
+export type Card = InferSelectModel<typeof cards>
+export type Concept = InferSelectModel<typeof concepts>
+export type Domain = InferSelectModel<typeof domains>
+export type Session = InferSelectModel<typeof sessions>
+export type Interaction = InferSelectModel<typeof interactions>

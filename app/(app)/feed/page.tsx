@@ -1,17 +1,14 @@
-export default function FeedPage() {
-  return (
-    <div className="flex h-screen flex-col items-center justify-center px-6">
-      <div className="w-full max-w-sm text-center">
-        <p
-          className="text-5xl font-light text-[var(--color-accent)]"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          Lumen
-        </p>
-        <p className="mt-4 text-[var(--color-muted)]">
-          Feed komt in Phase 2.
-        </p>
-      </div>
-    </div>
-  )
+import CardFeed from '@/components/cards/CardFeed'
+import { db } from '@/lib/db'
+import { cards } from '@/lib/db/schema'
+import { eq } from 'drizzle-orm'
+
+export default async function FeedPage() {
+  const liveCards = await db
+    .select()
+    .from(cards)
+    .where(eq(cards.status, 'live'))
+    .limit(20)
+
+  return <CardFeed initialCards={liveCards} />
 }
