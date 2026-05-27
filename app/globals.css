@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg: #0E0E0E;
+  --color-surface: #1A1A1A;
+  --color-border: #2A2A2A;
+  --color-text: #F0F0F0;
+  --color-muted: #999999;
+  --color-accent: #E89B7B;
+  --color-accent-warm: #D97757;
+
+  /* Typography */
+  --font-display: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-mono-code), "Courier New", monospace;
+
+  /* Swipe animation easing */
+  --ease-swipe: cubic-bezier(0.32, 0.72, 0.24, 1);
+
+  /* Spacing overrides */
+  --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --spacing-safe-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Prevent overscroll bounce on iOS */
+body {
+  overscroll-behavior: none;
+}
